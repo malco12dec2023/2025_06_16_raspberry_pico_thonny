@@ -192,6 +192,65 @@ for i in range(10):
 #######################################################
 
 #######################################################
+#Code 009 Start: micro-python equivalent
+from machine import Pin
+import time
+
+led = Pin(“LED”, Pin.OUT)
+
+for i in range(10):
+  led.on()
+  time.sleep(0.5)
+  led.off()
+  time.sleep(0.5)
+  
+  if i == 0:
+    print("Unang blink")
+  elif i == 1:
+    print("Pangalawang blink")
+  elif i == 2:
+    print("Pangatlong blink")
+  elif i == 3:
+    print("Pang-apat blink")
+  elif i == 4:
+    print("Pang-limang blink")
+  elif i == 5:
+    print("Pang-anim na blink")
+  elif i == 6:
+    print("Pang-pitong blink")
+  elif i == 7:
+    print("Pang-walong blink")
+  elif i == 8:
+    print("Pang-siyam blink")
+  else:
+    print("Tapos na manidn.")
+
+#Code 009 End.
+#######################################################
+
+
+#######################################################
+#Code 010 Start:
+from machine import ADC
+import time
+
+# Create ADC object on temperature sensor channel (ADC4)
+sensor_temp = ADC(4)
+
+# Reference voltage (typically 3.3V)
+conversion_factor = 3.3 / 65535
+
+while True:
+    reading = sensor_temp.read_u16()           # Raw ADC value
+    voltage = reading * conversion_factor      # Convert to voltage
+    temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
+
+    print("Temperature: {:.2f}°C".format(temperature_c))
+    time.sleep(0.25)
+#Code 010 End.
+#######################################################
+
+#######################################################
 #Code / Start:
 
 #Code / End.
