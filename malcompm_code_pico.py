@@ -123,12 +123,33 @@ import time
 
 led = Pin(“LED”, Pin.OUT)
 
-#  blink ten times
+#  blink five times
 for i in range(10):
   led.toggle()
   time.sleep(0.25)    # Wait 250 milliseconds
   
 #Code 007 End.
+#######################################################
+
+#######################################################
+#Code 008 Start: use led.toggle() with 250ms interval
+from machine import Pin
+import time
+
+led = Pin(“LED”, Pin.OUT)
+
+bilang = 0
+if bilang < 10:
+  led.on()
+  time.sleep(0.5)
+  led.off()
+  time.sleep(0.5)
+  bilang += 1
+else:
+  print("Tapos Na.")
+  break
+  
+#Code 008 End.
 #######################################################
 
 #######################################################
