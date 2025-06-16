@@ -139,17 +139,56 @@ import time
 led = Pin(“LED”, Pin.OUT)
 
 bilang = 0
-if bilang < 10:
+while True:
+  if bilang < 5:
+    led.on()
+    time.sleep(0.25)
+    led.off()
+    time.sleep(0.25)
+    bilang += 1
+  else:
+    print("Tapos Na.")
+    break
+  
+#Code 008 End.
+#######################################################
+
+#######################################################
+#Code 009 Start:
+from machine import Pin
+import time
+
+led = Pin(“LED”, Pin.OUT)
+
+for i in range(10):
   led.on()
   time.sleep(0.5)
   led.off()
   time.sleep(0.5)
-  bilang += 1
-else:
-  print("Tapos Na.")
-  break
-  
-#Code 008 End.
+
+  match i:
+    case 0:
+      print("Unang blink")
+    case 1:
+      print("Pangalawang blink")
+    case 2:
+      print("Pangatlong blink")
+    case 3:
+      print("Pang-apat blink")
+    case 4:
+      print("Pang-limang blink")
+    case 5:
+      print("Pang-anim na blink")
+    case 6:
+      print("Pang-pitong blink")
+    case 7:
+      print("Pang-walong blink")
+    case 8:
+      print("Pang-siyam blink")
+    case _:
+      print("Tapos na manidn.")
+
+#Code 009 End.
 #######################################################
 
 #######################################################
