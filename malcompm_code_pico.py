@@ -335,7 +335,7 @@ def read_temp_c():
   voltage = reading * conversion_factor      # Convert to voltage
   temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
   #print("Temperature: {:.2f}°C".format(temperature_c))
-  return temp_c
+  return temperature_c
 
 def celsius_papuntang_fahrenheit(c):
     return c * 9 / 5 + 32
@@ -383,7 +383,7 @@ def read_temp_c():
   voltage = reading * conversion_factor      # Convert to voltage
   temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
   #print("Temperature: {:.2f}°C".format(temperature_c))
-  return keyword is to exit a function and return a value.
+  return temperature_c
 
 def celsius_papuntang_fahrenheit(c):
     return c * 9 / 5 + 32
@@ -403,6 +403,96 @@ while True:
 
   time.sleep(0.25)
 #Code 013 End.
+#######################################################
+
+#######################################################
+#Code 014 Start:
+/*
+  Directions:
+    1. Copy all code in Code 014.
+    2. Run on Thonny IDE.
+*/
+from machine import ADC
+import time, sys
+
+# Create ADC object on temperature sensor channel (ADC4)
+sensor_temp = ADC(4)
+
+# Reference voltage (typically 3.3V)
+conversion_factor = 3.3 / 65535
+
+# Initial unit
+unit = 'C'
+last_input_time = time.time()
+
+def read_temp_c():
+  reading = sensor_temp.read_u16()           # Raw ADC value
+  voltage = reading * conversion_factor      # Convert to voltage
+  temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
+  #print("Temperature: {:.2f}°C".format(temperature_c))
+  return temperature_c
+
+def celsius_papuntang_fahrenheit(c):
+    return c * 9 / 5 + 32
+
+def celsius_papuntang_kelvin(c):
+    return c + 273.15
+
+def get_unit_from_user():
+    while True:
+        print("\nPumili ng temperature unit (F for Fahrenheit, C for Celsius, K for Kelvin): ")
+        try:
+            user_input = input().strip().upper()
+        except EOFError:
+            # Handle Ctrl+D or serial disconnect gracefully
+            print("Error malala!")
+            return None
+
+        if user_input in ('C', 'F', 'K'):
+            return user_input
+        else:
+            print("Mali ang iyong pinili, invalid input! Please enter F, C, or K.")
+
+while True:
+  # Every 5 seconds, ask user for new unit
+  if time.time() - last_input_time >= 5:
+    new_unit = get_unit_from_user()
+    if new_unit:
+      unit = new_unit
+    last_input_time = time.time()
+
+  temp_reading_c = read_temp_c()
+  
+  # Display temperature in selected unit
+  if unit == 'C':
+    print("Temp: {:.2f} °C".format(temp_reading_c))
+  elif unit == 'F':
+    temp_reading_f = celsius_papuntang_fahrenheit(temp_reading_c)
+    print("Temp: {:.2f} °F".format(temp_reading_f))
+  elif unit == 'K':
+    temp_reading_k = (celsius_papuntang_kelvin(temp_c))
+    print("Temp: {:.2f} K".format(temp_reading_k))
+  
+  time.sleep(0.25)
+        
+#Code 014 End.
+#######################################################
+
+#######################################################
+#Assignment / Start:
+/*
+  Directions:
+    1. Copy all code in Code 014.
+    2. Run on Thonny IDE.
+  Assignment
+    1. Write the code.
+    2. Create an operational flowchart.
+    3. Explain the code based on your understanding.
+    4. Prompt an AI to explain the code.
+    5. List the similiratity of your explanantion from AI explanation.
+    6. List the differences between your explanantion from AI explanation.
+*/
+#Assignment / End.
 #######################################################
 
 #######################################################
