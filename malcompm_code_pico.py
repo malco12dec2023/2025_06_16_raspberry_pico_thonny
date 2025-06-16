@@ -318,6 +318,8 @@ while True:
   str() - constructs a string from a wide variety of
   data types, including strings, integer literals and
   float literals
+
+  return keyword is to exit a function and return a value.
 */
 from machine import ADC
 import time, sys
@@ -332,7 +334,8 @@ def read_temp_c():
   reading = sensor_temp.read_u16()           # Raw ADC value
   voltage = reading * conversion_factor      # Convert to voltage
   temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
-  print("Temperature: {:.2f}°C".format(temperature_c))
+  #print("Temperature: {:.2f}°C".format(temperature_c))
+  return temp_c
 
 def celsius_papuntang_fahrenheit(c):
     return c * 9 / 5 + 32
@@ -355,6 +358,51 @@ while True:
   time.sleep(0.25)
 
 #Code 012 End.
+#######################################################
+
+#######################################################
+#Code 013 Start:
+/*
+  format() method returns the formatted string
+  
+  prints the temperature value (temp_reading_)
+  formatted to 2 decimal places,
+  followed by the unit (°C, °F, K).
+*/
+from machine import ADC
+import time, sys
+
+# Create ADC object on temperature sensor channel (ADC4)
+sensor_temp = ADC(4)
+
+# Reference voltage (typically 3.3V)
+conversion_factor = 3.3 / 65535
+
+def read_temp_c():
+  reading = sensor_temp.read_u16()           # Raw ADC value
+  voltage = reading * conversion_factor      # Convert to voltage
+  temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
+  #print("Temperature: {:.2f}°C".format(temperature_c))
+  return keyword is to exit a function and return a value.
+
+def celsius_papuntang_fahrenheit(c):
+    return c * 9 / 5 + 32
+
+def celsius_papuntang_kelvin(c):
+    return c + 273.15
+
+while True:
+  temp_reading_c = read_temp_c()
+  print("Temp: {:.2f} °C".format(temp_reading_c))
+
+  temp_reading_f = celsius_papuntang_fahrenheit(temp_reading_c))
+  print("Temp: {:.2f} °F".format(temp_reading_f)
+
+  temp_reading_k = celsius_papuntang_kelvin(temp_reading_c))
+  print("Temp: {:.2f} K".format(temp_reading_k)
+
+  time.sleep(0.25)
+#Code 013 End.
 #######################################################
 
 #######################################################
