@@ -3,7 +3,7 @@
 Directions:
   DO NOT COPY THE CODE.
   Do NOT copy the code, type each code or
-  edit each cganges to better understand
+  edit each changes to better understand
   the logic of operation.
 */
 
@@ -12,7 +12,8 @@ Directions:
 from machine import Pin
 import time
 
-led = Pin(25, Pin.OUT)
+# Onboard LED on most Pico boards
+led = Pin(25, Pin.OUT)  
 led.value(1)
 #Code 000 End.
 #######################################################
@@ -84,14 +85,50 @@ time.sleep(1)
 
 #######################################################
 #Code 005 Start: use while loop to blink infinitely
+from machine import Pin
+import time
+
+led = Pin(“LED”, Pin.OUT)
+
+# unlimited blink
+while True:
+  led.off()
+  time.sleep(1)
+  led.on()
+  time.sleep(1)
 
 #Code 005 End.
 #######################################################
 
 #######################################################
-#Code 006 Start: use for loop to blink 10 times
+#Code 006 Start: use for loop to blink 10 times with 500ms interval
+from machine import Pin
+import time
 
+led = Pin(“LED”, Pin.OUT)
+
+# blink ten times
+for i in range(10):
+  led.off()          # Turn LED off
+  time.sleep(0.5)    # Wait 500 milliseconds
+  led.on()           # Turn LED on
+  time.sleep(0.5)    # Wait 500 milliseconds
 #Code 006 End.
+#######################################################
+
+#######################################################
+#Code 007 Start: use led.toggle() with 250ms interval
+from machine import Pin
+import time
+
+led = Pin(“LED”, Pin.OUT)
+
+#  blink ten times
+for i in range(10):
+  led.toggle()
+  time.sleep(0.25)    # Wait 250 milliseconds
+  
+#Code 007 End.
 #######################################################
 
 #######################################################
