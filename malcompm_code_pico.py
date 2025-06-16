@@ -241,13 +241,37 @@ sensor_temp = ADC(4)
 conversion_factor = 3.3 / 65535
 
 while True:
-    reading = sensor_temp.read_u16()           # Raw ADC value
-    voltage = reading * conversion_factor      # Convert to voltage
-    temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
+  reading = sensor_temp.read_u16()           # Raw ADC value
+  voltage = reading * conversion_factor      # Convert to voltage
+  temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
 
-    print("Temperature: {:.2f}°C".format(temperature_c))
-    time.sleep(0.25)
+  print("Temperature: {:.2f}°C".format(temperature_c))
+  time.sleep(0.25)
 #Code 010 End.
+#######################################################
+
+#######################################################
+#Code 011 Start: (in Python a function is defined using the def keyword)
+from machine import ADC
+import time
+
+# Create ADC object on temperature sensor channel (ADC4)
+sensor_temp = ADC(4)
+
+# Reference voltage (typically 3.3V)
+conversion_factor = 3.3 / 65535
+
+def read_temp_c():
+  reading = sensor_temp.read_u16()           # Raw ADC value
+  voltage = reading * conversion_factor      # Convert to voltage
+  temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
+  print("Temperature: {:.2f}°C".format(temperature_c))
+
+while True:
+  read_temp_c()
+  time.sleep(0.25)
+
+#Code 011 End.
 #######################################################
 
 #######################################################
