@@ -491,6 +491,7 @@ while True:
     4. Prompt an AI to explain the code.
     5. List the similiratity of your explanantion from AI explanation.
     6. List the differences between your explanantion from AI explanation.
+    7. Draw the schematic diagram of the relay module.
 */
 #Assignment / End.
 #######################################################
