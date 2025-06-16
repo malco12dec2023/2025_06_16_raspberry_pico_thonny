@@ -275,6 +275,44 @@ while True:
 #######################################################
 
 #######################################################
+#Code 012 Start: (to concatenate, or combine, two strings you can use the + operator.)
+from machine import ADC
+import time, sys
+
+# Create ADC object on temperature sensor channel (ADC4)
+sensor_temp = ADC(4)
+
+# Reference voltage (typically 3.3V)
+conversion_factor = 3.3 / 65535
+
+def read_temp_c():
+  reading = sensor_temp.read_u16()           # Raw ADC value
+  voltage = reading * conversion_factor      # Convert to voltage
+  temperature_c = 27 - (voltage - 0.706) / 0.001721  # Formula from Pico datasheet
+  print("Temperature: {:.2f}°C".format(temperature_c))
+
+def celsius_papuntang_fahrenheit(c):
+    return c * 9 / 5 + 32
+
+def celsius_papuntang_kelvin(c):
+    return c + 273.15
+
+while True:
+  temp_reading_c = read_temp_c()
+  print("Temp (°C): " + temp_reading_c)
+
+  temp_reading_f = celsius_papuntang_fahrenheit(temp_reading_c))
+  print("Temp (°F): " + temp_reading_f)
+
+  temp_reading_k = celsius_papuntang_kelvin(temp_reading_c))
+  print("Temp (K): " + temp_reading_k)
+
+  time.sleep(0.25)
+
+#Code 012 End.
+#######################################################
+
+#######################################################
 #Code / Start:
 
 #Code / End.
