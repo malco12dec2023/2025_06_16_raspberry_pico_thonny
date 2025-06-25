@@ -133,3 +133,21 @@ Steps 4 - 9: Android Studio IDE
 
 8.3. Run AVD, click ON and OFF icon, built-in LED must turn on and off.
 */
+
+/*
+9. Create an EditText in your UI or use the EditText for IP Address input.
+9.1. Add function to get text from it (ip address) and save it to a String variable.
+9.2. Pass the String value (ip address) to the sendJsonPostRequest method.
+9.3. Modify the sendJsonPostRequest method.
+
+9.3.1. Change
+    private void sendJsonPostRequest(String s) {
+    to
+    private void sendJsonPostRequest(String s, String ip) {
+9.3.2. Change
+    ... "http://192.168.8.100/api/pagsend-ng-tatlong-data" ...
+    to
+    "http://" + ip + "/api/pagsend-ng-tatlong-data"
+
+9.4. No syntax error? Run AVD device.
+*/
